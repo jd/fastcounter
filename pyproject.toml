@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 79
+target-version = ['py35', 'py36', 'py37', 'py38']
+
+[build-system]
+requires = ["setuptools >= 40.6.0"]
+build_backend = "setuptools.build_meta"
