@@ -49,8 +49,6 @@ class FastWriteCounter(Counter):
         self._step = step
         self._counter = itertools.count(init, step)
         self._lock = threading.Lock()
-        # Init the counter value
-        next(self._counter)
 
     def increment(self):
         next(self._counter)
@@ -58,6 +56,6 @@ class FastWriteCounter(Counter):
     @property
     def value(self):
         with self._lock:
-            value = next(self._counter)
+            value = next(self._counter) - self._number_of_read
             self._number_of_read += self._step
-        return value - self._number_of_read
+        return value
