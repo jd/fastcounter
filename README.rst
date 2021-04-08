@@ -34,3 +34,7 @@ Example::
   counter.value # returns 1
   counter.increment()
   counter.value # returns 2
+
+  counter.increment(10)
+  counter.value # returns 12
+

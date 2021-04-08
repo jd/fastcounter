@@ -14,8 +14,8 @@ class Counter(object):
         self.value = init
         self._step = step
 
-    def increment(self):
-        self.value += self._step
+    def increment(self, num_steps=1):
+        self.value += (self._step * num_steps)
 
 
 class FastReadCounter(Counter):
@@ -30,9 +30,9 @@ class FastReadCounter(Counter):
         super().__init__(init, step)
         self._lock = threading.Lock()
 
-    def increment(self):
+    def increment(self, num_steps=1):
         with self._lock:
-            self.value += self._step
+            self.value += (self._step * num_steps)
 
 
 class FastWriteCounter(Counter):
@@ -50,8 +50,9 @@ class FastWriteCounter(Counter):
         self._counter = itertools.count(init, step)
         self._lock = threading.Lock()
 
-    def increment(self):
-        next(self._counter)
+    def increment(self, num_steps=1):
+        for i in range(0, num_steps):
+            next(self._counter)
 
     @property
     def value(self):
