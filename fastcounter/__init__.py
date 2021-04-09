@@ -15,7 +15,7 @@ class Counter(object):
         self._step = step
 
     def increment(self, num_steps=1):
-        self.value += (self._step * num_steps)
+        self.value += self._step * num_steps
 
 
 class FastReadCounter(Counter):
@@ -32,7 +32,7 @@ class FastReadCounter(Counter):
 
     def increment(self, num_steps=1):
         with self._lock:
-            self.value += (self._step * num_steps)
+            self.value += self._step * num_steps
 
 
 class FastWriteCounter(Counter):
