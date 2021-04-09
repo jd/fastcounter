@@ -1,0 +1,24 @@
+name: Continuous Integration
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  pep8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: |
+          pip install tox
+          tox -e pep8
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: |
+          pip install tox
+          tox -e py39
