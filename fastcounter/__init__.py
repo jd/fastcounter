@@ -58,3 +58,7 @@ class FastWriteCounter(Counter):
             value = next(self._counter) - self._number_of_read
             self._number_of_read += self._step
         return value
+
+    @value.setter
+    def value(self, _: int) -> None:
+        raise Exception(f"Cannot set value of {type(self)}")
