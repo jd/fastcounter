@@ -6,7 +6,6 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
     actions:
       merge:
-        strict: "smart"
         method: merge
   - name: automatic merge no review
     conditions:
