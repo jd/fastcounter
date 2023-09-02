@@ -14,7 +14,7 @@ class Counter(object):
         self.value = init
         self._step = step
 
-    def increment(self, num_steps=1) -> None:
+    def increment(self, num_steps: int = 1) -> None:
         self.value += self._step * num_steps
 
 
