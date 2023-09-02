@@ -19,7 +19,6 @@ class Counter(object):
 
 
 class FastReadCounter(Counter):
-
     __slots__ = (
         "value",
         "_lock",
@@ -36,7 +35,6 @@ class FastReadCounter(Counter):
 
 
 class FastWriteCounter(Counter):
-
     __slots__ = (
         "_number_of_read",
         "_counter",
