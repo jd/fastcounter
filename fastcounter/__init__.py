@@ -10,11 +10,11 @@ class Counter(object):
         "_step",
     )
 
-    def __init__(self, init=0, step=1):
+    def __init__(self, init: int = 0, step: int = 1):
         self.value = init
         self._step = step
 
-    def increment(self, num_steps=1):
+    def increment(self, num_steps: int = 1) -> None:
         self.value += self._step * num_steps
 
 
@@ -25,11 +25,11 @@ class FastReadCounter(Counter):
         "_step",
     )
 
-    def __init__(self, init=0, step=1):
+    def __init__(self, init: int = 0, step: int = 1):
         super().__init__(init, step)
         self._lock = threading.Lock()
 
-    def increment(self, num_steps=1):
+    def increment(self, num_steps: int = 1) -> None:
         with self._lock:
             self.value += self._step * num_steps
 
@@ -42,19 +42,23 @@ class FastWriteCounter(Counter):
         "_step",
     )
 
-    def __init__(self, init=0, step=1):
+    def __init__(self, init: int = 0, step: int = 1):
         self._number_of_read = 0
         self._step = step
         self._counter = itertools.count(init, step)
         self._lock = threading.Lock()
 
-    def increment(self, num_steps=1):
+    def increment(self, num_steps: int = 1) -> None:
         for i in range(0, num_steps):
             next(self._counter)
 
     @property
-    def value(self):
+    def value(self) -> int:
         with self._lock:
             value = next(self._counter) - self._number_of_read
             self._number_of_read += self._step
         return value
+
+    @value.setter
+    def value(self, _: int) -> None:
+        raise Exception(f"Cannot set value of {type(self)}")

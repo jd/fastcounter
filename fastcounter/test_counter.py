@@ -64,3 +64,11 @@ def test_counter_increment_step(counter_class):
     assert c.value == 13
     c.increment(10)
     assert c.value == 43
+
+
+def test_fastwritecounter_cannot_set_value():
+    c = fastcounter.FastWriteCounter(1)
+    assert c.value == 1
+    c.increment()
+    with pytest.raises(Exception):
+        c.value = 1
