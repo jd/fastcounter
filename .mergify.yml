@@ -1,8 +1,8 @@
 pull_request_rules:
   - name: automatic merge
     conditions:
-      - "status-success=pep8"
-      - "status-success=test"
+      - status-success=pep8
+      - status-success=test
       - "#approved-reviews-by>=1"
     actions:
       merge:
@@ -10,8 +10,8 @@ pull_request_rules:
   - name: automatic merge no review
     conditions:
       - author=jd
-      - "status-success=pep8"
-      - "status-success=test"
+      - status-success=pep8
+      - status-success=test
     actions:
       merge:
         method: merge
@@ -19,3 +19,7 @@ pull_request_rules:
     conditions: []
     actions:
       dismiss_reviews: {}
+queue_rules:
+  - name: default
+    queue_branch_merge_method: ""
+    autoqueue: true
